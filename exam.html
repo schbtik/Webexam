@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Моє портфоліо</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <link rel="stylesheet" href="style.css">
+      </head>      
+<body>
+
+<header>
+  <h1 id="greeting"></h1>
+  <nav>
+    <ul>
+      <li><a href="#bio">Біографія</a></li>
+      <li><a href="#skills">Навички</a></li>
+      <li><a href="#hobby">Хобі</a></li>
+      <li><a href="#contact">Контакти</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- Пошук -->
+  <section>
+    <input type="text" id="search" placeholder="Пошук по сторінці..." />
+  </section>
+
+  <!-- Біографія -->
+  <section id="bio" class="searchable">
+    <h2>Коротка біографія</h2>
+    <div class="about">
+      <img src="photo.jpeg" alt="Фото власника портфоліо" />
+      <p>
+        Мене звати Софія. Я студентка 121 спеціальності та вивчаю веброзробку,
+        HTML, CSS та JavaScript.
+      </p>
+    </div>
+  </section>
+
+  <!-- Досвід -->
+  <section class="searchable">
+    <h2>Досвід</h2>
+    <p>Навчальні проєкти з HTML/CSS, базові скрипти на JavaScript.</p>
+  </section>
+
+  <!-- Навички -->
+  <section id="skills" class="searchable">
+    <h2>Навички та вміння</h2>
+    <ul class="skills">
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>Flexbox</li>
+      <li>JavaScript</li>
+      <li>Git</li>
+    </ul>
+  </section>
+
+  <!-- Хобі -->
+  <section id="hobby" class="searchable">
+    <h2>Хобі</h2>
+    <p>Програмування, читання, теніс.</p>
+  </section>
+
+  <!-- Контакти -->
+  <section id="contact">
+    <h2>Зворотній зв’язок</h2>
+    <form>
+      <input type="text" placeholder="Ім’я" />
+      <input type="email" placeholder="Email" />
+      <textarea rows="4" placeholder="Ваше повідомлення"></textarea>
+      <button type="submit">Надіслати</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Моє портфоліо</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  /* ===== Самодрукуючий текст ===== */
+  const greetingText = "Вітаю! Запрошую до мого портфоліо 🎉";
+  const greetingEl = document.getElementById("greeting");
+  let index = 0;
+
+  function typeText() {
+    if (index < greetingText.length) {
+      greetingEl.textContent += greetingText.charAt(index);
+      index++;
+      setTimeout(typeText, 100);
+    }
+  }
+
+  window.addEventListener("load", typeText);
+
+  /* ===== Пошук ===== */
+  const searchInput = document.getElementById("search");
+  const items = document.querySelectorAll(".searchable");
+
+  searchInput.addEventListener("input", () => {
+    const value = searchInput.value.toLowerCase();
+    items.forEach(item => {
+      item.style.display = item.textContent.toLowerCase().includes(value)
+        ? "block"
+        : "none";
+    });
+  });
+
+  /* ===== Hover для форми ===== */
+  const fields = document.querySelectorAll("form input, form textarea");
+
+  fields.forEach(field => {
+    field.addEventListener("mouseenter", () => {
+      field.style.background = "#eef5ff";
+      field.style.borderColor = "#4a90e2";
+    });
+
+    field.addEventListener("mouseleave", () => {
+      field.style.background = "white";
+      field.style.borderColor = "#ccc";
+    });
+  });
+</script>
+
+</body>
+</html>
